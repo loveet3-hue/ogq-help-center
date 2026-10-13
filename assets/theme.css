@@ -5858,3 +5858,53 @@ p.StyledParagraph-sc-zkult2-0 {
   color:#3F4DA8 !important;
   font-weight:600;
 }
+/* =========================================================
+   OGQ Help Center – Footer
+   ========================================================= */
+footer.footer.ogq-foot{
+  position:relative;overflow:hidden;margin-top:0!important;padding:100px 0 40px!important;border:0!important;
+  background-color:#171A3F!important;
+  background-image:
+    radial-gradient(45% 80% at 0% 0%,rgba(108,124,255,.35) 0,rgba(108,124,255,0) 70%),
+    radial-gradient(40% 80% at 100% 100%,rgba(214,120,220,.28) 0,rgba(214,120,220,0) 70%)!important;
+  color:rgba(255,255,255,.72)!important;font-size:14px!important;
+  font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+  -webkit-font-smoothing:antialiased;word-break:keep-all;
+}
+footer.ogq-foot *{box-sizing:border-box}
+footer.ogq-foot a{text-decoration:none}
+footer.ogq-foot .ogq-foot__ribbon{position:absolute;left:0;top:0;width:100%;height:120px;pointer-events:none}
+footer.ogq-foot .ogq-foot__inner{position:relative;max-width:1120px!important;margin:0 auto;padding:0 24px!important;display:block!important}
+
+/* 서비스 바로가기 */
+footer.ogq-foot .ogq-foot__label{margin:0 0 14px;font-size:11px;font-weight:800;letter-spacing:.18em;color:#AEB8FF}
+footer.ogq-foot .ogq-foot__services{margin:0!important;padding:0 0 32px!important;border-bottom:1px solid rgba(255,255,255,.12)!important}
+footer.ogq-foot .ogq-foot__chips{display:flex;flex-wrap:wrap;gap:10px}
+footer.ogq-foot .ogq-foot__chips a{display:inline-flex;align-items:center;gap:8px;margin:0!important;padding:11px 18px;border-radius:999px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:#FFFFFF!important;font-size:14px;font-weight:600;
+  transition:background .2s,border-color .2s,transform .2s}
+footer.ogq-foot .ogq-foot__chips a:hover{text-decoration:none!important;color:#FFFFFF!important;background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.3);transform:translateY(-2px)}
+footer.ogq-foot .ogq-foot__chips svg{width:13px;height:13px;fill:none;stroke:#AEB8FF;stroke-width:2.6;stroke-linecap:round}
+
+/* 하단: 약관 + 회사 정보 */
+footer.ogq-foot .ogq-foot__bottom{padding-top:28px}
+footer.ogq-foot .ogq-foot__policy{display:flex!important;flex-wrap:wrap;gap:20px;margin:0 0 14px!important;padding:0!important}
+footer.ogq-foot .ogq-foot__policy a{font-size:14px;font-weight:600;color:rgba(255,255,255,.72)!important;transition:color .2s}
+footer.ogq-foot .ogq-foot__policy a b{font-weight:800;color:#FFFFFF}
+footer.ogq-foot .ogq-foot__policy a:hover{color:#FFFFFF!important;text-decoration:none!important}
+footer.ogq-foot .ogq-foot__info{display:flex;flex-wrap:wrap;gap:6px 0;margin:0 0 6px;padding:0;list-style:none;font-size:13px;line-height:1.6;color:rgba(255,255,255,.48)}
+footer.ogq-foot .ogq-foot__info li{display:inline-flex;align-items:center}
+footer.ogq-foot .ogq-foot__info li + li::before{content:"";width:1px;height:10px;margin:0 12px;background:rgba(255,255,255,.12)}
+footer.ogq-foot .ogq-foot__copy{margin:14px 0 0!important;padding:0!important;font-size:12px!important;color:rgba(255,255,255,.48)!important}
+
+@media (max-width:768px){
+  footer.footer.ogq-foot{padding:68px 0 32px!important}
+  footer.ogq-foot .ogq-foot__ribbon{height:70px}
+  footer.ogq-foot .ogq-foot__inner{padding:0 20px!important}
+  footer.ogq-foot .ogq-foot__chips a{font-size:13px;padding:10px 14px}
+  footer.ogq-foot .ogq-foot__info{flex-direction:column}
+  footer.ogq-foot .ogq-foot__info li + li::before{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  footer.ogq-foot *{transition:none!important}
+}
