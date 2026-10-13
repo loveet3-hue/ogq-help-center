@@ -1,0 +1,29 @@
+/* 젠데스크 기능을 대신하는 부분에만 쓰는 보조 스타일 (나머지는 theme.css 그대로) */
+.kb-loading{padding:60px 0;text-align:center;color:#68737D}
+.kb-lead{color:#68737D;line-height:1.7;margin:0 0 20px}
+.kb-avatar{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#E9ECFA;color:#3F4DA8;font-size:12px;font-weight:800}
+.kb-avatar.staff{background:#3F4DA8;color:#fff}
+.article-avatar .kb-avatar{width:40px;height:40px}
+.kb-instant{display:none;position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:50;background:#fff;border:1px solid #E3E6F3;border-radius:16px;
+  box-shadow:0 18px 40px rgba(63,77,168,.14);padding:6px;text-align:left;max-height:420px;overflow-y:auto}
+.kb-instant a{display:block;padding:10px 14px;border-radius:10px;color:#1E2240;text-decoration:none}
+.kb-instant a:hover{background:#F6F7FC;text-decoration:none}
+.kb-instant b{display:block;font-weight:700;font-size:14px}
+.kb-instant span{display:block;font-size:12px;color:#9397B0;margin-top:2px}
+.kb-instant a.kb-instant__all{border-top:1px solid #E3E6F3;border-radius:0 0 10px 10px;color:#3F4DA8;font-size:13px;font-weight:700}
+.request-rate{background:#F6F7FC;border:1px solid #E3E6F3;border-radius:12px;padding:20px 24px;margin:20px 0}
+.request-rate h2{font-size:18px;margin:0 0 6px}
+.request-rate p{margin:0 0 10px;color:#68737D}
+.request-rate textarea{width:100%;min-height:90px;margin-bottom:10px}
+.comment-form-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.comment-form-controls input[type=submit]{margin-left:auto}
+.zd-attach{cursor:pointer;color:#1F73B7;font-size:14px}
+.zd-files{display:inline-flex;flex-wrap:wrap;gap:6px}
+.zd-file{display:inline-flex;align-items:center;gap:6px;border:1px solid #D8DCDE;border-radius:4px;padding:2px 8px;font-size:13px;background:#fff}
+.zd-file button{border:0;background:none;cursor:pointer;color:#68737D}
+.kb-lookup{max-width:480px}
+.kb-lookup .form-field{margin-bottom:16px}
+.kb-lookup input[type=text],.kb-lookup input[type=email]{width:100%}
+.hidden{display:none!important}
+.comment-form .comment-container{width:100%}
+.comment-form textarea{width:100%;min-height:120px;resize:vertical}
