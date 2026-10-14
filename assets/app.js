@@ -181,8 +181,7 @@
       svcBox.innerHTML = '';
       SERVICES.forEach(function (s) {
         svcBox.appendChild(chip(s.name, s === cur, function () {
-          cur = s; curType = null; render();
-          if (!s.types.length) location.href = url();
+          cur = s; curType = null; render(); // 광고 & 제휴도 다른 서비스처럼 선택만(문의는 아래 '제휴 제안하러 가기'로)
         }));
       });
       typeBox.innerHTML = '';
