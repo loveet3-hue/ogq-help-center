@@ -5908,3 +5908,6 @@ footer.ogq-foot .ogq-foot__copy{margin:14px 0 0!important;padding:0!important;fo
 @media (prefers-reduced-motion:reduce){
   footer.ogq-foot *{transition:none!important}
 }
+/* 고객센터 톤앤매너(인디고·그라데이션)에 맞춘 위로 가기 버튼 */
+.scroll-to-top { background: #3F4DA8; border: 0; border-radius: 14px; box-shadow: 0 8px 20px rgba(63, 77, 168, .28); transition: opacity .3s ease, visibility .3s ease, background .2s, transform .2s; }
+.scroll-to-top:hover { background: linear-gradient(135deg, #4F6BE0 0%, #7A6CE6 60%, #B477E0 100%); transform: translateY(-2px); }
