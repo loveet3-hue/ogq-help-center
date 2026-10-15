@@ -25,7 +25,7 @@
 
 /* ---------- HERO ---------- */
 .ogq-hero{
-  position:relative;overflow:hidden;padding:110px 0 120px;text-align:center;
+  position:relative;overflow:hidden;padding:128px 0 128px;text-align:center;
   background:
     radial-gradient(55% 70% at 12% 25%,#DCEBFF 0,rgba(220,235,255,0) 70%),
     radial-gradient(45% 65% at 88% 30%,#F5DDF5 0,rgba(245,221,245,0) 70%),
@@ -47,12 +47,12 @@
 @keyframes ogqBob{0%,100%{translate:0 0}50%{translate:0 -10px}}
 @keyframes ogqTwinkle{0%,100%{opacity:.35;scale:.85}50%{opacity:1;scale:1.1}}
 
-.ogq-hero__inner{position:relative;max-width:680px;margin:0 auto;padding:0 24px}
-.ogq-eyebrow{margin:0;font-size:14px;font-weight:800;letter-spacing:.2em;color:var(--indigo)}
-.ogq-bar{display:block;width:44px;height:3px;margin:14px auto 18px;border-radius:2px;background:var(--grad)}
-.ogq-hero__title{margin:0 0 12px;font-size:clamp(36px,6vw,64px);font-weight:900;letter-spacing:-.02em;line-height:1.1;
+.ogq-hero__inner{position:relative;max-width:1000px;margin:0 auto;padding:0 24px}
+.ogq-eyebrow{margin:0;font-size:16px;font-weight:800;letter-spacing:.24em;color:var(--indigo)}
+.ogq-bar{display:block;width:56px;height:4px;margin:18px auto 24px;border-radius:2px;background:var(--grad)}
+.ogq-hero__title{margin:0 0 20px;font-size:clamp(44px,8.4vw,104px);font-weight:900;letter-spacing:-.02em;line-height:1.1;
   background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-.ogq-hero__sub{margin:0 0 36px;font-size:17px;font-weight:600;color:var(--indigo);opacity:.85}
+.ogq-hero__sub{margin:0;font-size:clamp(17px,1.9vw,23px);font-weight:600;color:var(--indigo);opacity:.85}
 
 .ogq-search{max-width:580px;margin:0 auto}
 .ogq-search form.search{position:relative;margin:0;width:100%}
@@ -169,8 +169,8 @@
 }
 @media (max-width:768px){
   .ogq-wrap{padding:0 20px}
-  .ogq-hero{padding:80px 0 84px}
-  .ogq-hero__sub{font-size:15px}
+  .ogq-hero{padding:88px 0 92px}
+  .ogq-hero__sub{font-size:16px}
   .dd{width:44px;height:44px}
   .d1{left:4%;top:8%;width:52px;height:52px}.d3{right:5%;top:8%}
   .d2,.d4,.d6,.s3{display:none}.d5{right:4%;top:auto;bottom:6%}
