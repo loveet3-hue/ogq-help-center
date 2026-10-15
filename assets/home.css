@@ -25,7 +25,7 @@
 
 /* ---------- HERO ---------- */
 .ogq-hero{
-  position:relative;overflow:hidden;padding:110px 0 110px;text-align:center;
+  position:relative;overflow:hidden;padding:68px 0 68px;text-align:center;
   background:
     radial-gradient(55% 70% at 12% 25%,#DCEBFF 0,rgba(220,235,255,0) 70%),
     radial-gradient(45% 65% at 88% 30%,#F5DDF5 0,rgba(245,221,245,0) 70%),
@@ -169,7 +169,7 @@
 }
 @media (max-width:768px){
   .ogq-wrap{padding:0 20px}
-  .ogq-hero{padding:80px 0 80px}
+  .ogq-hero{padding:52px 0 52px}
   .ogq-hero__sub{font-size:15px}
   .dd{width:44px;height:44px}
   .d1{left:4%;top:8%;width:52px;height:52px}.d3{right:5%;top:8%}
