@@ -55,8 +55,26 @@
       .then(function (r) { return r.json(); }).then(unwrap);
   }
   function unwrap(j) {
-    if (!j || !j.ok) throw new Error((j && j.error) || '일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+    if (!j || !j.ok) {
+      var e = new Error((j && j.error) || '일시적인 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
+      e.retry = !!(j && j.retry);
+      throw e;
+    }
     return j.data;
+  }
+  // 접수가 몰려 서버가 잠깐 응답하지 못하면(연결 끊김·과부하 화면·일시 오류) 같은 요청 번호로 자동으로 다시 보낸다.
+  // 요청 번호가 같으면 서버가 이미 만든 티켓을 돌려주므로 두 번 접수되지 않는다.
+  function apiRetry(action, payload, onRetry) {
+    var waits = [1500, 3000, 6000, 10000];
+    function attempt(n) {
+      return api(action, payload).catch(function (err) {
+        var transient = err.retry || !err.message || /fetch|network|JSON|Unexpected token|Load failed/i.test(err.message);
+        if (!transient || n >= waits.length) throw err.retry || transient ? new Error('접수가 잠시 몰리고 있습니다. 작성한 내용은 그대로 있으니 잠시 후 다시 제출해 주세요.') : err;
+        if (onRetry) onRetry(n + 1);
+        return new Promise(function (res) { setTimeout(res, waits[n]); }).then(function () { return attempt(n + 1); });
+      });
+    }
+    return attempt(0);
   }
   var cfgP = null;
   function getConfig() {
@@ -453,11 +471,12 @@
       var btn = $('#submitBtn');
       btn.disabled = true; btn.textContent = '제출 중…';
       readFiles(getFiles()).then(function (files) {
-        return api('submit', {
+        var reqId = 'r' + Date.now().toString(36) + Math.random().toString(36).slice(2, 10);
+        return apiRetry('submit', {
           service: svcSel.value, category: catSel.value, name: nick, email: email, fields: { nickname: nick },
           subject: $('#subject').value, body: text, agree: true, website: $('#website').value,
-          files: files, ua: navigator.userAgent, page: location.href
-        });
+          files: files, ua: navigator.userAgent, page: location.href, reqId: reqId
+        }, function (n) { btn.textContent = '제출 중… 다시 보내는 중 (' + n + ')'; });
       }).then(function (r) {
         $('#reqForm').classList.add('hidden');
         $('.ogq-req-formcard__head').classList.add('hidden');
