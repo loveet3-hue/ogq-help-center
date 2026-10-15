@@ -203,3 +203,11 @@
 @media (prefers-reduced-motion:reduce){
   .ogq-home *{animation:none!important;transition:none!important}
 }
+
+/* 휴대폰: 배너가 낮아져 장식 아이콘이 글자와 겹치지 않도록 모서리 아이콘만 남김 */
+@media (max-width:768px){
+  .ogq-hero .d2,.ogq-hero .d4,.ogq-hero .d5,.ogq-hero .d6,.ogq-hero .s2,.ogq-hero .s3{display:none !important}
+  .ogq-hero .d1{left:3%;top:6%;width:40px;height:40px}
+  .ogq-hero .d3{right:4%;top:6%;width:40px;height:40px}
+  .ogq-hero .s1{right:22%;top:8%}
+}
