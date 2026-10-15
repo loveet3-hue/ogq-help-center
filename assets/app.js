@@ -102,11 +102,11 @@
   function crumbs(list) {
     var el = $('#crumbs');
     if (!el) return;
-    el.innerHTML = '<li><a href="index.html">OGQ 고객센터</a></li>' + list.map(function (x) {
+    el.innerHTML = '<li><a href="./">OGQ 고객센터</a></li>' + list.map(function (x) {
       return '<li><a href="' + (x.href || '#') + '"' + (x.href ? '' : ' aria-current="page"') + '>' + esc(x.t) + '</a></li>';
     }).join('');
   }
-  function notFound(el) { el.innerHTML = '<header class="page-header"><h1>페이지를 찾을 수 없습니다</h1></header><p><a href="index.html">고객센터 홈으로 돌아가기</a></p>'; }
+  function notFound(el) { el.innerHTML = '<header class="page-header"><h1>페이지를 찾을 수 없습니다</h1></header><p><a href="./">고객센터 홈으로 돌아가기</a></p>'; }
 
   /* 검색 — 모든 단어가 들어간 문서, 제목 일치에 가중치 */
   function searchKb(d, q) {
@@ -150,8 +150,8 @@
           if (!r.length) { box.style.display = 'none'; return; }
           box.innerHTML = r.map(function (a) {
             var s = d.sec[a.section_id] || {}, c = d.cat[s.category_id] || {};
-            return '<a href="article.html?id=' + a.id + '"><b>' + esc(a.title) + '</b><span>' + esc(c.name || '') + ' › ' + esc(s.name || '') + '</span></a>';
-          }).join('') + '<a class="kb-instant__all" href="search.html?query=' + encodeURIComponent(q) + '">"' + esc(q) + '" 검색 결과 모두 보기</a>';
+            return '<a href="article?id=' + a.id + '"><b>' + esc(a.title) + '</b><span>' + esc(c.name || '') + ' › ' + esc(s.name || '') + '</span></a>';
+          }).join('') + '<a class="kb-instant__all" href="search?query=' + encodeURIComponent(q) + '">"' + esc(q) + '" 검색 결과 모두 보기</a>';
           box.style.display = 'block';
         });
       }, 150);
@@ -188,7 +188,7 @@
     ];
     var svcBox = $('#ogqSvc'), typeBox = $('#ogqType'), go = $('#ogqGo'), goText = $('#ogqGoText'), typeQ = $('#ogqTypeQ');
     var cur = SERVICES[0], curType = null;
-    function url() { return 'request.html?service=' + encodeURIComponent(cur.key) + (curType ? '&category=' + encodeURIComponent(curType) : ''); }
+    function url() { return 'request?service=' + encodeURIComponent(cur.key) + (curType ? '&category=' + encodeURIComponent(curType) : ''); }
     function chip(label, on, fn) {
       var b = document.createElement('button');
       b.type = 'button'; b.className = 'ogq-chip' + (on ? ' is-on' : ''); b.textContent = label;
@@ -228,7 +228,7 @@
       if (!a) { notFound(box); return; }
       var s = d.sec[a.section_id] || {}, c = d.cat[s.category_id] || {};
       document.title = a.title + ' – OGQ 고객센터';
-      crumbs([{ t: c.name, href: 'category.html?id=' + c.id }, { t: s.name, href: 'section.html?id=' + s.id }]);
+      crumbs([{ t: c.name, href: 'category?id=' + c.id }, { t: s.name, href: 'section?id=' + s.id }]);
       var siblings = d.articlesOf(a.section_id);
       var recent = [];
       try { recent = JSON.parse(localStorage.getItem('ogq_recent') || '[]'); } catch (e) { }
@@ -242,7 +242,7 @@
         '<aside class="article-sidebar" aria-labelledby="section-articles-title"><div class="collapsible-sidebar">' +
         '<span id="section-articles-title" class="collapsible-sidebar-title sidenav-title">이 섹션의 문서</span>' +
         '<div class="collapsible-sidebar-body"><ul>' + siblings.map(function (x) {
-          return '<li><a href="article.html?id=' + x.id + '" class="sidenav-item' + (x.id === id ? ' current-article" aria-current="page' : '') + '">' + esc(x.title) + '</a></li>';
+          return '<li><a href="article?id=' + x.id + '" class="sidenav-item' + (x.id === id ? ' current-article" aria-current="page' : '') + '">' + esc(x.title) + '</a></li>';
         }).join('') + '</ul></div></div></aside>' +
         '<article id="main-content" class="article"><header class="article-header"><h1 title="' + esc(a.title) + '" class="article-title">' + esc(a.title) + '</h1>' +
         '<div class="article-author"><div class="avatar article-avatar">' + AGENT_ICON + '<img src="assets/img/avatar.svg" alt="" class="user-avatar"></div><div class="article-meta">관리자' +
@@ -253,11 +253,11 @@
         '<button type="button" class="button article-vote article-vote-up" data-v="up" aria-label="이 문서가 유용했음" aria-pressed="' + (voted === 'up') + '">예</button>' +
         '<button type="button" class="button article-vote article-vote-down" data-v="down" aria-label="이 문서가 유용하지 않았음" aria-pressed="' + (voted === 'down') + '">아니요</button></div>' +
         '<small class="article-votes-count"><span class="article-vote-label" id="voteMsg">' + (voted ? '의견을 보내 주셔서 감사합니다.' : '') + '</span></small></div>' +
-        '<div class="article-more-questions">또 다른 질문이 있으십니까? <a href="request.html">문의 등록</a></div>' +
+        '<div class="article-more-questions">또 다른 질문이 있으십니까? <a href="request">문의 등록</a></div>' +
         '<div class="article-return-to-top"><a href="#article-container">맨 위로 돌아가기 <svg xmlns="http://www.w3.org/2000/svg" class="article-return-to-top-icon" width="20" height="20" focusable="false" viewBox="0 0 12 12" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-linecap="round" d="M10.5 8.5L6 4 1.5 8.5"/></svg></a></div></footer>' +
         '<div class="article-relatives">' +
-        (recentOthers.length ? '<section class="recent-articles"><h2 class="recent-articles-title">최근 본 문서</h2><ul>' + recentOthers.map(function (x) { return '<li><a href="article.html?id=' + x + '">' + esc(d.art[x].title) + '</a></li>'; }).join('') + '</ul></section>' : '') +
-        (related.length ? '<section class="related-articles"><h2 class="related-articles-title">관련 문서</h2><ul>' + related.map(function (x) { return '<li><a href="article.html?id=' + x.id + '">' + esc(x.title) + '</a></li>'; }).join('') + '</ul></section>' : '') +
+        (recentOthers.length ? '<section class="recent-articles"><h2 class="recent-articles-title">최근 본 문서</h2><ul>' + recentOthers.map(function (x) { return '<li><a href="article?id=' + x + '">' + esc(d.art[x].title) + '</a></li>'; }).join('') + '</ul></section>' : '') +
+        (related.length ? '<section class="related-articles"><h2 class="related-articles-title">관련 문서</h2><ul>' + related.map(function (x) { return '<li><a href="article?id=' + x.id + '">' + esc(x.title) + '</a></li>'; }).join('') + '</ul></section>' : '') +
         '</div></article>';
       $all('.article-vote', box).forEach(function (b) {
         b.addEventListener('click', function () {
@@ -283,10 +283,10 @@
       el.innerHTML = '<header class="page-header"><h1>' + esc(c.name) + '</h1>' + (c.description ? '<p class="page-header-description">' + esc(c.description) + '</p>' : '') + '</header>' +
         '<div id="main-content" class="section-tree">' + d.sectionsOf(id).map(function (s) {
           var arts = d.articlesOf(s.id);
-          return '<section class="section"><h2 class="section-tree-title"><a href="section.html?id=' + s.id + '">' + esc(s.name) + '</a></h2>' +
+          return '<section class="section"><h2 class="section-tree-title"><a href="section?id=' + s.id + '">' + esc(s.name) + '</a></h2>' +
             '<ul class="article-list">' + arts.slice(0, 6).map(function (a) {
-              return '<li class="article-list-item' + (a.promoted ? ' article-promoted' : '') + '"><a href="article.html?id=' + a.id + '" class="article-list-link">' + esc(a.title) + '</a></li>';
-            }).join('') + '</ul>' + (arts.length > 6 ? '<a href="section.html?id=' + s.id + '" class="see-all-articles">문서 ' + arts.length + '개 모두 보기</a>' : '') + '</section>';
+              return '<li class="article-list-item' + (a.promoted ? ' article-promoted' : '') + '"><a href="article?id=' + a.id + '" class="article-list-link">' + esc(a.title) + '</a></li>';
+            }).join('') + '</ul>' + (arts.length > 6 ? '<a href="section?id=' + s.id + '" class="see-all-articles">문서 ' + arts.length + '개 모두 보기</a>' : '') + '</section>';
         }).join('') + '</div>';
     }).catch(function () { notFound(el); });
   }
@@ -298,10 +298,10 @@
       if (!s) { notFound(el); return; }
       var c = d.cat[s.category_id] || {};
       document.title = s.name + ' – OGQ 고객센터';
-      crumbs([{ t: c.name, href: 'category.html?id=' + c.id }, { t: s.name, href: 'section.html?id=' + s.id }]);
+      crumbs([{ t: c.name, href: 'category?id=' + c.id }, { t: s.name, href: 'section?id=' + s.id }]);
       el.innerHTML = '<header class="page-header"><h1>' + esc(s.name) + '</h1>' + (s.description ? '<p class="page-header-description">' + esc(s.description) + '</p>' : '') + '</header>' +
         '<ul class="article-list">' + d.articlesOf(id).map(function (a) {
-          return '<li class="article-list-item' + (a.promoted ? ' article-promoted' : '') + '"><a href="article.html?id=' + a.id + '" class="article-list-link">' + esc(a.title) + '</a></li>';
+          return '<li class="article-list-item' + (a.promoted ? ' article-promoted' : '') + '"><a href="article?id=' + a.id + '" class="article-list-link">' + esc(a.title) + '</a></li>';
         }).join('') + '</ul>';
     }).catch(function () { notFound(el); });
   }
@@ -314,20 +314,20 @@
     document.title = (q ? '"' + q + '" 검색 결과' : '검색 결과') + ' – OGQ 고객센터';
     kb().then(function (d) {
       var r = q ? searchKb(d, q) : [];
-      var link = 'search.html?query=' + encodeURIComponent(q);
+      var link = 'search?query=' + encodeURIComponent(q);
       el.innerHTML = '<aside class="search-results-sidebar"><section class="filters-in-section collapsible-sidebar"><h3 class="collapsible-sidebar-title sidenav-title">유형</h3>' +
         '<ul class="multibrand-filter-list"><li><a href="' + link + '" class="sidenav-item current" aria-current="page"><span class="sidenav-subitem filter-name">모든 유형</span> <span class="sidenav-subitem doc-count">(' + r.length + ')</span></a></li>' +
         '<li><a href="' + link + '" class="sidenav-item"><span class="sidenav-subitem filter-name">문서</span> <span class="sidenav-subitem doc-count">(' + r.length + ')</span></a></li></ul></section></aside>' +
         '<section id="main-content" class="search-results-column">' +
         (r.length ? '<h1 class="search-results-subheading">"' + esc(q) + '"에 대한 ' + r.length + '개의 결과</h1><ul class="search-results-list">' + r.map(function (a) {
           var s = d.sec[a.section_id] || {}, c = d.cat[s.category_id] || {};
-          return '<li><article><header><div class="search-result-title-container"><h2 class="search-result-title"><a href="article.html?id=' + a.id + '">' + esc(a.title) + '</a></h2></div>' +
-            '<div class="search-result-meta-container"><nav><ol class="breadcrumbs search-result-breadcrumbs"><li><a href="category.html?id=' + c.id + '">' + esc(c.name) + '</a></li><li><a href="section.html?id=' + s.id + '">' + esc(s.name) + '</a></li></ol></nav>' +
+          return '<li><article><header><div class="search-result-title-container"><h2 class="search-result-title"><a href="article?id=' + a.id + '">' + esc(a.title) + '</a></h2></div>' +
+            '<div class="search-result-meta-container"><nav><ol class="breadcrumbs search-result-breadcrumbs"><li><a href="category?id=' + c.id + '">' + esc(c.name) + '</a></li><li><a href="section?id=' + s.id + '">' + esc(s.name) + '</a></li></ol></nav>' +
             '<span class="meta-data">관리자</span><span class="meta-data"><time datetime="' + esc(a.updated_at) + '">' + esc(kdate(a.updated_at)) + '</time></span></div></header>' +
             '<p class="search-result-description">' + snippet(a.text, q) + '</p></article></li>';
         }).join('') + '</ul>' :
           '<h1 class="search-results-subheading">' + (q ? '"' + esc(q) + '"에 대한 결과가 없습니다.' : '검색어를 입력해 주세요.') + '</h1>' +
-          '<div class="no-results"><p>다른 검색어로 찾아보거나 <a href="request.html">문의를 남겨 주세요</a>.</p></div>') +
+          '<div class="no-results"><p>다른 검색어로 찾아보거나 <a href="request">문의를 남겨 주세요</a>.</p></div>') +
         '</section>';
     });
   }
